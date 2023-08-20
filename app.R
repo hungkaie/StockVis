@@ -14,7 +14,7 @@ ui <- fluidPage(
       helpText("Select a stock to examine.
 
         Information will be collected from Yahoo finance."),
-      textInput("symb", "Symbol", "SPY"), # 2330.TW
+      textInput("symb", "Symbol", "SPY"), # 2330.TW 台積電
       
       dateRangeInput("dates",
                      "Date range",
@@ -52,9 +52,6 @@ server <- function(input, output) {
   })
   
   output$plot <- renderPlot({
-    # chartTheme: white, white.mono, black, black.mono, orange, beige, wsj
-    # type: line, bar, auto
-    # TA: c(addVo()), NULL, c(addVo(),addBBands())
     chartSeries(dataInput(), theme = chartTheme("white"),
                 type = "line", log.scale = input$log, TA = c(addVo()))
   })
